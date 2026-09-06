@@ -52,25 +52,19 @@ The species column has a small number of unique values.
 There are three unique species, so a for loop can
 process and log each one.
 
-Selected measurement column: **bill_length_mm**
+Selected measurement column: **body_mass_g**
 
 Reason for choosing this measurement:
 
-Bill length varies across penguins.
-There is no fixed cutoff, so we'll calculate the average
-and assign a classification depending on a threshold
-around the average value.
+Body mass varies across penguins.
+We'll use a threshold of 3,500 grams
+to identify penguins with higher body mass.
 
 ```text
-Sample bill_length_mm: 39.1
-Short threshold multiplier: 0.9
-Long threshold multiplier:  1.1
-Short threshold: 39.529736842105265
-Long threshold:  48.31412280701755
-First row bill_length_mm classification: SHORT
+SHORT_THRESHOLD_MULTIPLIER: Final[float] = 0.9
+LONG_THRESHOLD_MULTIPLIER: Final[float] = 1.1
+BODY_MASS_THRESHOLD: Final[float] = 3500
 
-Max records to process: 10
-Stream wait seconds: 1
 ```
 
 See [project.log](project.log) for more.
@@ -80,7 +74,7 @@ See [project.log](project.log) for more.
 The project creates a histogram showing the distribution
 of the selected numeric measurement.
 
-![Histogram of the selected measurement](docs/images/measurement-distribution.png)
+![Histogram of the selected measurement]([docs/images/measurement-distribution.png](https://github.com/rmerrill20/datafun-02-automation/blob/main/docs/images/body-mass-above-3500g.png))
 
 ## Important Folders and Files
 
