@@ -74,7 +74,8 @@ See [project.log](project.log) for more.
 The project creates a histogram showing the distribution
 of the selected numeric measurement.
 
-![Histogram of the selected measurement]([docs/images/body-mass-above-3500g.png])
+![Histogram of the selected measurement]([docs/images/body-mass-above-3500g.png])<img width="2969" height="1768" alt="body-mass-above-3500g" src="https://github.com/user-attachments/assets/84c8e997-f1f8-49fe-a390-bd5e1e68be5e" />
+
 ## Important Folders and Files
 
 - **data/** - the CSV data file
