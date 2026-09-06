@@ -74,8 +74,7 @@ See [project.log](project.log) for more.
 The project creates a histogram showing the distribution
 of the selected numeric measurement.
 
-![Histogram of the selected measurement]([docs/images/measurement-distribution.png](https://github.com/rmerrill20/datafun-02-automation/blob/main/docs/images/body-mass-above-3500g.png))
-
+![Histogram of the selected measurement]([docs/images/body-mass-above-3500g.png])
 ## Important Folders and Files
 
 - **data/** - the CSV data file
