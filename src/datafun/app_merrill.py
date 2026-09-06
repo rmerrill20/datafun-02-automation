@@ -103,23 +103,23 @@ process and log each one.
 """
 
 # CUSTOM: WHICH measurement to classify, and why this one.
-MEASUREMENT_COLUMN: Final[str] = "bill_length_mm"
+MEASUREMENT_COLUMN: Final[str] = "body_mass_g"
 
 # CUSTOM: Describe why we choose it.
 # Use a triple-quoted string (three double quotes) to allow multi-line text.
 # Use a raw string (r before the opening quotes) so it appears just
 # like I typed it.
 WHY_THIS_MEASUREMENT: Final[str] = r"""
-Bill length varies across penguins.
-There is no fixed cutoff, so we'll calculate the average
-and assign a classification depending on a threshold
-around the average value.
+Body mass varies across penguins.
+We'll use a threshold of 3,500 grams
+to identify penguins with higher body mass.
 """
 
 # CUSTOM: Set thresholds around the mean to
 # classify a reading.
 SHORT_THRESHOLD_MULTIPLIER: Final[float] = 0.9
 LONG_THRESHOLD_MULTIPLIER: Final[float] = 1.1
+BODY_MASS_THRESHOLD: Final[float] = 3500
 
 # === DEFINE THE MAIN FUNCTION ===
 
@@ -311,18 +311,24 @@ def main() -> None:
     LOG.info("07. VISUALIZE the selected measurement.")
     LOG.info("-------------------------------")
 
-    LOG.info("Creating a chart of bill length by penguin sex.")
+    LOG.info("Creating a chart of penguins above 3500g.")
 
-    CHART_PATH = Path("docs/images/bill-length-by-sex.png")
+    CHART_PATH = Path("docs/images/body-mass-above-3500g.png")
 
-    sex_means = df.groupby("sex")[MEASUREMENT_COLUMN].mean()
+    filtered_df = df[df[MEASUREMENT_COLUMN] > BODY_MASS_THRESHOLD]
 
-    plt.bar(sex_means.index, sex_means.values)
+    plt.hist(filtered_df[MEASUREMENT_COLUMN], bins=10)
 
-    plt.title("Average Bill Length by Penguin Sex")
-    plt.xlabel("Sex")
-    plt.ylabel("Average Bill Length (mm)")
+    plt.title("Penguins Above 3500g Body Mass")
+    plt.xlabel("Body Mass (g)")
+    plt.ylabel("Number of Penguins")
+    plt.tight_layout()
 
+    plt.savefig(CHART_PATH)
+    LOG.info(f"Chart saved successfully at {CHART_PATH}.")
+
+    plt.show()
+    plt.close()
     plt.savefig(CHART_PATH)
     LOG.info(f"Chart saved successfully at {CHART_PATH}.")
 
