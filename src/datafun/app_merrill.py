@@ -307,7 +307,7 @@ def main() -> None:
 
         time.sleep(STREAM_WAIT_SECONDS)
 
-    LOG.info("-------------------------------")
+        LOG.info("-------------------------------")
     LOG.info("07. VISUALIZE the selected measurement.")
     LOG.info("-------------------------------")
 
@@ -317,6 +317,8 @@ def main() -> None:
 
     filtered_df = df[df[MEASUREMENT_COLUMN] > BODY_MASS_THRESHOLD]
 
+    plt.figure(figsize=(10, 6))
+
     plt.hist(filtered_df[MEASUREMENT_COLUMN], bins=10)
 
     plt.title("Penguins Above 3500g Body Mass")
@@ -324,12 +326,7 @@ def main() -> None:
     plt.ylabel("Number of Penguins")
     plt.tight_layout()
 
-    plt.savefig(CHART_PATH)
-    LOG.info(f"Chart saved successfully at {CHART_PATH}.")
-
-    plt.show()
-    plt.close()
-    plt.savefig(CHART_PATH)
+    plt.savefig(CHART_PATH, dpi=300, bbox_inches="tight")
     LOG.info(f"Chart saved successfully at {CHART_PATH}.")
 
     plt.show()
